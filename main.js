@@ -7,9 +7,26 @@ AppClass = function() {
         let viIndex = ($(this).attr("recordid") * 1);
         if ((viIndex >= 0) && (viIndex < appClass.appData.records.length)) {
 
+            $("#edtID2").val(appClass.appData.records[viIndex].coinID);
+            $("#edtQtd2").val(appClass.formatWith(appClass.appData.records[viIndex].coinQtd));
+            $("#edtUnitC2").val(appClass.formatWith(appClass.appData.records[viIndex].coinUnitC));
+            $("#edtTotalC2").val(appClass.formatWith(appClass.appData.records[viIndex].coinTotC));
+            if (appClass.appData.records[viIndex].coinUnitV > 0) {
+                $("#edtUnitV2").val(appClass.formatWith(appClass.appData.records[viIndex].coinUnitV));
+                $("#edtTotalV2").val(appClass.formatWith(appClass.appData.records[viIndex].coinTotV));
+                $("#edtRes2").val(appClass.formatWith(appClass.appData.records[viIndex].coinRes));
+            } else {
+                $("#edtUnitV2").val("");
+                $("#edtTotalV2").val("");
+                $("#edtRes2").val("");
+            }
+
             $("#mainScreen").slideUp("fast",function(){
                 $("#formScreen").slideDown("fast",function(){
-                    $("#edtID2").focus();
+                    if (appClass.appData.records[viIndex].coinUnitV > 0)
+                        $("#edtID2").focus();
+                    else
+                        $("#edtUnitV2").focus();
                 });
             });
 
