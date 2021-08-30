@@ -1,5 +1,7 @@
 AppClass = function() {
-    this.appData = [];
+    this.appData = {
+        "records":[]
+    };
 
     this.abreNovoRegistro = function() {
         $("#mainScreen").slideUp("fast",function(){
@@ -35,11 +37,11 @@ AppClass = function() {
         let data = appPersistent.getStoredJSON("appData");
         if (data)
             appClass.appData = data;
-        
-        if (appClass.appData.length == 1)
+
+        if (appClass.appData.records.length == 1)
             $("#lblLanctos").html("1 lançamento");
-        else if (appClass.appData.length > 1)
-            $("#lblLanctos").html(appClass.appData.length + " lançamentos");
+        else if (appClass.appData.records.length > 1)
+            $("#lblLanctos").html(appClass.appData.records.length + " lançamentos");
         else
             $("#lblLanctos").html("Nenhum lançamento");
     }
@@ -82,10 +84,12 @@ AppClass = function() {
             return;
         }
 
-        let totalC = (coinQtd * coinUnitC);
-
+        let totalC   = (coinQtd * coinUnitC);
         let registro = appClass.novoRegistro(coinID, coinQtd, coinUnitC, totalC);
-        alert(JSON.stringify(registro));
+
+        appClass.appData.records.push(registro);
+
+        alert(JSON.stringify(appClass.appData));
     }
 }
 
