@@ -54,22 +54,18 @@ AppClass = function() {
 
                 var lineHTML = "<tr style='color:"+fontColor+"'>";
                 lineHTML += "<td>"+rec.coinID+"</td>";
-                lineHTML += "<td>"+rec.coinQtd+"</td>";
-                lineHTML += "<td>"+rec.coinUnitC+"</td>";
-                lineHTML += "<td>"+rec.coinTotC+"</td>";
+                lineHTML += "<td>"+appClass.formatWith(rec.coinQtd)+"</td>";
+                lineHTML += "<td>"+appClass.formatWith(rec.coinUnitC)+"</td>";
+                lineHTML += "<td>"+appClass.formatWith(rec.coinTotC)+"</td>";
                 if (rec.coinUnitV > 0) {
-                    lineHTML += "<td>"+rec.coinUnitV+"</td>";
-                    lineHTML += "<td>"+rec.coinTotV+"</td>";
-                    lineHTML += "<td>"+rec.coinRes+"</td>";
+                    lineHTML += "<td>"+appClass.formatWith(rec.coinUnitV)+"</td>";
+                    lineHTML += "<td>"+appClass.formatWith(rec.coinTotV)+"</td>";
+                    lineHTML += "<td>"+appClass.formatWith(rec.coinRes)+"</td>";
                 } else {
                     lineHTML += "<td></td>";
                     lineHTML += "<td></td>";
                     lineHTML += "<td></td>";
                 }
-
-                lineHTML += "<td>"+rec.coinUnitV+"</td>";
-                lineHTML += "<td>"+rec.coinTotV+"</td>";
-                lineHTML += "<td>"+rec.coinRes+"</td>";
                 lineHTML += "</tr>";
 
                 $("#tableData").append(lineHTML);
@@ -92,6 +88,19 @@ AppClass = function() {
             "coinTotV":0,
             "coinRes": 0
         };
+    }
+
+    this.formatWith = function(viNumber, viPrecision) {
+        if (typeof(viPrecision)=="undefined")
+            viPrecision = 6;
+
+        var strNumber = viNumber.toString();
+        console.log('Str:'+strNumber);
+        var vPos = strNumber.indexOf('.');
+        console.log('vPos:'+vPos);
+        if (vPos)
+            return strNumber.substr(0,(vPos+viPrecision+1));
+        return strNumber;
     }
 
     this.salvaNovoRegistro = function() {
