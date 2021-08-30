@@ -41,6 +41,20 @@ AppClass = function() {
         });
     }
 
+    this.calcEdtTotVenda = function() {
+        let coinQtd   = ($("#edtQtd2").val() * 1);
+        let coinUnitV = ($("#edtUnitV2").val() * 1);
+
+        if ((coinQtd <= 0) || (coinUnitV <= 0)) {
+            $("#edtTotalV2").val("");
+            $("#edtRes2").val("");
+            return;
+        }
+
+        $("#edtTotalV2").val(coinUnitV * coinQtd);
+        $("#edtRes2").val($("#edtTotalV2").val() - $("#edtTotalC2").val());
+    }
+
     this.calcNewTotCompra = function() {
         let coinQtd   = ($("#edtQtd").val() * 1);
         let coinUnitC = ($("#edtUnitC").val() * 1);
@@ -205,6 +219,7 @@ window.addEventListener("load", function(event) {
                 $("#btnSalvaNew").click(appClass.salvaNovoRegistro);
                 $("#edtQtd").keyup(appClass.calcNewTotCompra);
                 $("#edtUnitC").keyup(appClass.calcNewTotCompra);
+                $("#edtUnitV2").keyup(appClass.calcEdtTotVenda);
 
             });
         });
