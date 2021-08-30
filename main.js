@@ -1,4 +1,6 @@
 AppClass = function() {
+    this.appData = [];
+
     this.abreNovoRegistro = function() {
         $("#mainScreen").slideUp("fast",function(){
             $("#newScreen").slideDown("fast",function(){
@@ -27,6 +29,19 @@ AppClass = function() {
 
     this.helloWorld = function() {
         console.log('--> AppClass.helloWorld()');
+    }
+
+    this.loadData = function() {
+        let data = appPersistent.getStoredJSON("appData");
+        if (data)
+            appClass.appData = data;
+        
+        if (appClass.appData.length == 1)
+            $("#lblLanctos").html("1 lançamento");
+        else if (appClass.appData.length > 1)
+            $("#lblLanctos").html(appClass.appData.length + " lançamentos");
+        else
+            $("#lblLanctos").html("Nenhum lançamento");
     }
 
     this.novoRegistro = function(coinID, coinQtd, coinUnitC, coinTotalC) {
@@ -96,6 +111,8 @@ window.addEventListener("load", function(event) {
     } else {
         console.log("==> [NO.SERVICEWORKER]");
     }
+
+    appClass.loadData();
 
     /* programa mostrar a tela principal depois do lading... */
     setTimeout(function(){
