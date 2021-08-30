@@ -3,9 +3,17 @@ AppClass = function() {
         "records":[]
     };
 
-    this.abreEdicao = function(voElement) {
-        alert('Vai planeta no elemento ' + $(voElement).attr("recordid"));
-        alert('Vai planeta no this ' + $(this).attr("recordid"));
+    this.abreEdicao = function() {
+        let viIndex = ($(this).attr("recordid") * 1);
+        if ((viIndex >= 0) && (viIndex < appClass.appData.records.length)) {
+
+            $("#mainScreen").slideUp("fast",function(){
+                $("#formScreen").slideDown("fast",function(){
+                    $("#edtID2").focus();
+                });
+            });
+
+        }
     }
 
     this.abreNovoRegistro = function() {

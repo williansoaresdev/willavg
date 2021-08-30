@@ -9,6 +9,14 @@ body {
     font-size: 9pt;
 }
 
+#formScreen {
+    display:none;
+    overflow-x: hidden;
+    padding-top:30px;
+    padding-left:15px;
+    padding-right:15px;
+}
+
 #newScreen {
     display:none;
     overflow-x: hidden;
