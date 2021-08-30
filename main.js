@@ -3,8 +3,9 @@ AppClass = function() {
         "records":[]
     };
 
-    this.abreEdicao = function(viIndex) {
-        alert('Vai planeta no ' + viIndex);
+    this.abreEdicao = function(voElement) {
+        alert('Vai planeta no elemento ' + $(voElement).attr("recordid"));
+        alert('Vai planeta no this ' + $(this).attr("recordid"));
     }
 
     this.abreNovoRegistro = function() {
@@ -51,12 +52,12 @@ AppClass = function() {
 
         $("#tableData").html("");
         if (appClass.appData.records.length) {
-            for (x=0; x < appClass.appData.records.length; x++) {
+            for (var x=0; x < appClass.appData.records.length; x++) {
                 var rec = appClass.appData.records[x];
 
                 var fontColor = (rec.coinUnitV > 0) ? "#8888ff" : "#ff8888";
 
-                var lineHTML = "<tr id='trRec"+x+"' style='color:"+fontColor+"'>";
+                var lineHTML = "<tr id='trRec"+x+"' recordid='"+x+"' style='color:"+fontColor+"'>";
                 lineHTML += "<td>"+rec.coinID+"</td>";
                 lineHTML += "<td>"+appClass.formatWith(rec.coinQtd)+"</td>";
                 lineHTML += "<td>"+appClass.formatWith(rec.coinUnitC)+"</td>";
@@ -73,9 +74,7 @@ AppClass = function() {
                 lineHTML += "</tr>";
 
                 $("#tableData").append(lineHTML);
-                $("#trRec"+x).click(function(){
-                    appClass.abreEdicao(x);
-                });
+                $("#trRec"+x).click(appClass.abreEdicao);
             }
         }
     }
