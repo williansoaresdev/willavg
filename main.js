@@ -8,6 +8,7 @@ AppClass = function() {
         if ((viIndex >= 0) && (viIndex < appClass.appData.records.length)) {
 
             $("#edtID2").val(appClass.appData.records[viIndex].coinID);
+            $("#edtID2").attr("recordid",viIndex);
             $("#edtQtd2").val(appClass.formatWith(appClass.appData.records[viIndex].coinQtd));
             $("#edtUnitC2").val(appClass.formatWith(appClass.appData.records[viIndex].coinUnitC));
             $("#edtTotalC2").val(appClass.formatWith(appClass.appData.records[viIndex].coinTotC));
@@ -148,6 +149,47 @@ AppClass = function() {
         return strNumber;
     }
 
+    this.salvaEdicaoRegistro = function() {
+        let coinID = $.trim($("#edtID2").val());
+        if (coinID=="") {
+            alert('Informe ID da moeda');
+            $("#edtID2").focus();
+            return;
+        }
+
+        let coinQtd   = ($("#edtQtd2").val() * 1);
+        if (coinQtd <= 0) {
+            alert('Informe Quantidade');
+            $("#edtQtd2").focus();
+            return;
+        }
+
+        let coinUnitC = ($("#edtUnitC2").val() * 1);
+        if (coinUnitC <= 0) {
+            alert('Informe preço unitário de compra');
+            $("#edtUnitC2").focus();
+            return;
+        }
+
+        let totalC    = (coinQtd * coinUnitC);
+        let coinUnitV = ($("#edtUnitV2").val() * 1);
+        let totalV    = (coinQtd * coinUnitV);
+        let resV      = (totalV - totalC);
+
+        let viIndex = ($("#edtID2").attr("recordid") * 1);
+
+        appClass.appData.records[viIndex].coinID    = coinID;
+        appClass.appData.records[viIndex].coinQtd   = coinQtd;
+        appClass.appData.records[viIndex].coinUnitC = coinUnitC;
+        appClass.appData.records[viIndex].coinTotC  = totalC;
+        appClass.appData.records[viIndex].coinUnitV = coinUnitV;
+        appClass.appData.records[viIndex].coinTotV  = totalV;
+        appClass.appData.records[viIndex].coinRes   = resV;
+
+        appPersistent.storeJSONData("appData", appClass.appData);
+        window.location.reload();
+    }
+
     this.salvaNovoRegistro = function() {
         let coinID = $.trim($("#edtID").val());
         if (coinID=="") {
@@ -217,6 +259,7 @@ window.addEventListener("load", function(event) {
                 $("#btnNovo").click(appClass.abreNovoRegistro);
                 $("#btnCancNew").click(appClass.cancelaNovoRegistro);
                 $("#btnSalvaNew").click(appClass.salvaNovoRegistro);
+                $("#btnSalvaEdit").click(appClass.salvaEdicaoRegistro);
                 $("#edtQtd").keyup(appClass.calcNewTotCompra);
                 $("#edtUnitC").keyup(appClass.calcNewTotCompra);
                 $("#edtUnitV2").keyup(appClass.calcEdtTotVenda);
