@@ -29,8 +29,20 @@ AppClass = function() {
         console.log('--> AppClass.helloWorld()');
     }
 
-    this.novoRegistro = function(coinID, coinQtd, coinUnitC) {
-        
+    this.novoRegistro = function(coinID, coinQtd, coinUnitC, coinTotalC) {
+        let d = new Date();
+
+        return {
+            "coin-year": d.getFullYear(),
+            "coin-month": (d.getMonth()+1),
+            "coin-day": d.getDate(),
+            "coin-id":coinID,
+            "coin-qtd":coinQtd,
+            "coin-unit-c":coinUnitC,
+            "coin-total-c":coinTotalC,
+            "coin-unit-v":0,
+            "coin-total-v":0
+        };
     }
 
     this.salvaNovoRegistro = function() {
@@ -57,7 +69,7 @@ AppClass = function() {
 
         let totalC = (coinQtd * coinUnitC);
 
-        let registro = appClass.novoRegistro(coinID, coinQtd, coinUnitC);
+        let registro = appClass.novoRegistro(coinID, coinQtd, coinUnitC, totalC);
         alert(JSON.stringify(registro));
     }
 }
