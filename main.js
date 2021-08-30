@@ -3,6 +3,10 @@ AppClass = function() {
         "records":[]
     };
 
+    this.abreEdicao = function(viIndex) {
+        alert('Vai planeta no ' + viIndex);
+    }
+
     this.abreNovoRegistro = function() {
         $("#mainScreen").slideUp("fast",function(){
             $("#newScreen").slideDown("fast",function(){
@@ -52,7 +56,7 @@ AppClass = function() {
 
                 var fontColor = (rec.coinUnitV > 0) ? "#8888ff" : "#ff8888";
 
-                var lineHTML = "<tr style='color:"+fontColor+"'>";
+                var lineHTML = "<tr id='trRec"+x+"' style='color:"+fontColor+"'>";
                 lineHTML += "<td>"+rec.coinID+"</td>";
                 lineHTML += "<td>"+appClass.formatWith(rec.coinQtd)+"</td>";
                 lineHTML += "<td>"+appClass.formatWith(rec.coinUnitC)+"</td>";
@@ -69,6 +73,9 @@ AppClass = function() {
                 lineHTML += "</tr>";
 
                 $("#tableData").append(lineHTML);
+                $("#trRec"+x).click(function(){
+                    appClass.abreEdicao(x);
+                });
             }
         }
     }
