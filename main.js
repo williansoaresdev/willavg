@@ -44,21 +44,53 @@ AppClass = function() {
             $("#lblLanctos").html(appClass.appData.records.length + " lançamentos");
         else
             $("#lblLanctos").html("Nenhum lançamento");
+
+        $("#tableData").html("");
+        if (appClass.appData.records.length) {
+            for (x=0; x < appClass.appData.records.length; x++) {
+                var rec = appClass.appData.records[x];
+
+                var fontColor = (rec.coinUnitV > 0) ? "#8888ff" : "#ff8888";
+
+                var lineHTML = "<tr style='color:"+fontColor+"'>";
+                lineHTML += "<td>"+rec.coinID+"</td>";
+                lineHTML += "<td>"+rec.coinQtd+"</td>";
+                lineHTML += "<td>"+rec.coinUnitC+"</td>";
+                lineHTML += "<td>"+rec.coinTotC+"</td>";
+                if (rec.coinUnitV > 0) {
+                    lineHTML += "<td>"+rec.coinUnitV+"</td>";
+                    lineHTML += "<td>"+rec.coinTotV+"</td>";
+                    lineHTML += "<td>"+rec.coinRes+"</td>";
+                } else {
+                    lineHTML += "<td></td>";
+                    lineHTML += "<td></td>";
+                    lineHTML += "<td></td>";
+                }
+
+                lineHTML += "<td>"+rec.coinUnitV+"</td>";
+                lineHTML += "<td>"+rec.coinTotV+"</td>";
+                lineHTML += "<td>"+rec.coinRes+"</td>";
+                lineHTML += "</tr>";
+
+                $("#tableData").append(lineHTML);
+            }
+        }
     }
 
     this.novoRegistro = function(coinID, coinQtd, coinUnitC, coinTotalC) {
         let d = new Date();
 
         return {
-            "coin-year": d.getFullYear(),
-            "coin-month": (d.getMonth()+1),
-            "coin-day": d.getDate(),
-            "coin-id":coinID,
-            "coin-qtd":coinQtd,
-            "coin-unit-c":coinUnitC,
-            "coin-total-c":coinTotalC,
-            "coin-unit-v":0,
-            "coin-total-v":0
+            "coinYear": d.getFullYear(),
+            "coinMonth": (d.getMonth()+1),
+            "coinDay": d.getDate(),
+            "coinID":coinID,
+            "coinQtd":coinQtd,
+            "coinUnitC":coinUnitC,
+            "coinTotC":coinTotalC,
+            "coinUnitV":0,
+            "coinTotV":0,
+            "coinRes": 0
         };
     }
 
