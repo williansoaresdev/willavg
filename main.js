@@ -101,6 +101,19 @@ AppClass = function() {
         }
     }
 
+    this.formatWith = function(viNumber, viPrecision) {
+        if (typeof(viPrecision)=="undefined")
+            viPrecision = 6;
+
+        var strNumber = viNumber.toString();
+        var vPos      = strNumber.indexOf('.');
+
+        if (vPos)
+            return strNumber.substr(0,(vPos+viPrecision+1));
+
+        return strNumber;
+    }
+
     this.helloWorld = function() {
         console.log('--> AppClass.helloWorld()');
     }
@@ -161,19 +174,6 @@ AppClass = function() {
             "coinTotV":0,
             "coinRes": 0
         };
-    }
-
-    this.formatWith = function(viNumber, viPrecision) {
-        if (typeof(viPrecision)=="undefined")
-            viPrecision = 6;
-
-        var strNumber = viNumber.toString();
-        console.log('Str:'+strNumber);
-        var vPos = strNumber.indexOf('.');
-        console.log('vPos:'+vPos);
-        if (vPos)
-            return strNumber.substr(0,(vPos+viPrecision+1));
-        return strNumber;
     }
 
     this.salvaEdicaoRegistro = function() {
