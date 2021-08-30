@@ -1,0 +1,36 @@
+body {
+    background-color: #fff;
+    color: #090909;
+    font-family: 'Segoe UI Regular', sans-serif;    
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    text-align: center;
+    font-size: 9pt;
+}
+
+#newScreen {
+    display:none;
+    overflow-x: hidden;
+    padding-top:30px;    
+}
+
+#mainScreen {
+    display:none;
+    overflow-x: hidden;
+    padding-top:30px;
+}
+
+#offlineOptions {
+    text-align:center;
+    overflow-x: hidden;
+}
+
+#splashScreen {
+    padding-top: 100px;
+    overflow-x: hidden;
+}
+
+.titCell {
+    font-weight: bold;
+}

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title>PWA Starter</title>
+    <meta name="description" content="It seems offline"/>
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon-180x180.png" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+
+    <link rel="manifest" href="manifest.webmanifest">
+
+    <!-- SCRIPT DE RELOAD LOCAL PARA EVITAR OFFLINE PROBLEMS -->
+    <script>
+
+        var secCounter = 11; /* Contador, começa em 11 para no primeiro decremento começar a contagem de 10 segundos */
+        var alreadyReloading = false; /* Para evitar que entra no relad() duas vezes (se o timer e botao forem acionados juntos) */
+
+        /**
+         * Faz a contagem regressiva e aciona o reload se o usuário não
+         * pressionar o botão de reload sozinho.
+         */
+        function autoCheck() {
+            /* Para evitar que entra no relad() duas vezes (se o timer e botao forem acionados juntos) */
+            if (alreadyReloading)
+                return;
+
+            secCounter--; /* contador regressivo */
+
+            /* acabou o tempo, força o reload */
+            if (secCounter == 0) {
+                reloadMe();
+            } else {
+                /* ainda nao acabou, avisa na tela o tempo restante */
+                $("#lblAutoChecking").html("Checking again in "+secCounter+" seconds...");
+                /* programa mais 10 segundos */
+                setTimeout(autoCheck, 1000);
+            }
+
+        }
+
+        /**
+         * Recarrega a pagina mas não antes de avisar isso na tela.
+         */
+        function reloadMe() {
+            /* Para evitar que entra no relad() duas vezes (se o timer e botao forem acionados juntos) */
+            if (alreadyReloading)
+                return;
+
+            alreadyReloading = true;
+
+            /* Avisa na tela que está atualizando */
+            $("#lblAutoChecking").hide();
+            $("#btnReload").attr("disabled","true");
+            $("#btnReload").html(" Checking... ");
+
+            /* Recarrega a página */
+            window.location.reload();
+        }
+
+    </script>
+
+  </head>
+  <body onload="autoCheck()">
+    
+    <div id="offlineOptions">
+        <div id="imgOffline">
+
+            <div class="row" style="padding-top: 30px;">
+                <div class="col-xs-3 col-md-5"></div>
+                <div class="col-xs-6 col-md-2">
+                    <img src="./img/nocloud1.png" class="img-responsive" />
+                </div>
+                <div class="col-xs-3 col-md-5"></div>
+            </div>
+
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-xs-1 col-md-3"></div>
+                <div class="col-xs-10 col-md-6" style="text-align: center;">
+                    It seems offline. Please, check your internet connection and try it again.
+                </div>
+                <div class="col-xs-1 col-md-3"></div>
+            </div>
+
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-xs-1 col-md-3"></div>
+                <div class="col-xs-10 col-md-6" style="text-align: center;">
+                    <button id="btnReload" class="btn btn-danger btn-md" onclick="reloadMe()"> Try again </button>
+                </div>
+                <div class="col-xs-1 col-md-3"></div>
+            </div>
+
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-xs-1 col-md-3"></div>
+                <div class="col-xs-10 col-md-6" style="text-align: center;">
+                    <small style="color:#555555" id="lblAutoChecking">Checking again in 11 seconds...</small>
+                </div>
+                <div class="col-xs-1 col-md-3"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPTS NECESSÁRIOS NA CARGA DA APLICAÇÃO -->
+    <script src="jquery/jquery-1.12.4.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

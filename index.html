@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff"/>
+
+    <title>PWA Starter</title>
+    <meta name="description" content="Just a PWA starter page 2.00"/>
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon-180x180.png" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu">
+
+    <!-- Segoe CSS -->
+    <link rel="stylesheet" href="./css/segoe.css">
+
+    <!-- Own CSS -->
+    <link rel="stylesheet" href="./css/main.css">
+
+    <link rel="manifest" href="manifest.webmanifest">
+
+  </head>
+  <body>
+    
+    <div id="splashScreen">
+        <p>
+          <img src="./img/apple-touch-icon-57x57.png" />
+        </p>
+        <p>
+          <img src="./img/loading_blue.gif" />
+        </p>
+        <p>
+          Carregando informações...
+        </p>
+    </div>
+
+    <div id="newScreen">
+        <h3>Novo registro</h3>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i></span>
+            <input id="edtID" type="text" class="form-control" placeholder="ID">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-question-sign"></i></span>
+            <input id="edtQtd" type="number" class="form-control" placeholder="Qtd">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+            <input id="edtUnitC" type="number" class="form-control" placeholder="Preço Compra">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-ok-sign"></i></span>
+            <input id="edtTotalC" type="number" class="form-control" disabled="true" placeholder="Total">
+        </div>
+        <div class="input-group" style="padding-top:20px">
+            <button id="btnSalvaNew" class="btn btn-primary">Salvar</button>
+            <button id="btnCancNew" class="btn btn-primary">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="mainScreen">
+      <h3>{numero de lancamentos}</h3>
+      <p>
+        <button id='btnNovo'> Novo </button>
+      </p>
+      <p>
+        <table width="100%">
+          <th>
+            <td class="titCell">ID</td>
+            <td class="titCell">Qtd</td>
+            <td class="titCell">Unit C</td>
+            <td class="titCell">Tot</td>
+            <td class="titCell">Unit V</td>
+            <td class="titCell">Tot</td>
+            <td class="titCell">=</td>
+          </th>
+        </table>
+      </p>
+    </div>
+
+    <!-- SCRIPTS NECESSÁRIOS NA CARGA DA APLICAÇÃO -->
+    <script src="jquery/jquery-1.12.4.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="persist.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
