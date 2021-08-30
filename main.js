@@ -68,10 +68,37 @@ AppClass = function() {
         $("#edtTotalC").val(coinUnitC * coinQtd);
     }
 
+    this.calcNewTotCompra2 = function() {
+        let coinQtd   = ($("#edtQtd2").val() * 1);
+        let coinUnitC = ($("#edtUnitC2").val() * 1);
+
+        if ((coinQtd <= 0) || (coinUnitC <= 0)) {
+            $("#edtTotalC2").val("");
+        } else {
+            $("#edtTotalC2").val(coinUnitC * coinQtd);
+        }
+        appClass.calcEdtTotVenda();
+    }
+
+    this.cancelaEditRegistro = function() {
+        $("#formScreen").slideUp("fast",function(){
+            $("#mainScreen").slideDown("fast");
+        });        
+    }
+
     this.cancelaNovoRegistro = function() {
         $("#newScreen").slideUp("fast",function(){
             $("#mainScreen").slideDown("fast");
         });
+    }
+
+    this.confirmaExcRegistro = function() {
+        if (confirm('Confirma exclusão deste registro?')) {
+            let viIndex = ($("#edtID2").attr("recordid") * 1);
+            appClass.appData.records.splice(viIndex, 1);
+            appPersistent.storeJSONData("appData", appClass.appData);
+            window.location.reload();
+        }
     }
 
     this.helloWorld = function() {
@@ -258,10 +285,12 @@ window.addEventListener("load", function(event) {
 
                 $("#btnNovo").click(appClass.abreNovoRegistro);
                 $("#btnCancNew").click(appClass.cancelaNovoRegistro);
+                $("#btnCancEdit").click(appClass.cancelaEditRegistro);
                 $("#btnSalvaNew").click(appClass.salvaNovoRegistro);
                 $("#btnSalvaEdit").click(appClass.salvaEdicaoRegistro);
-                $("#edtQtd").keyup(appClass.calcNewTotCompra);
-                $("#edtUnitC").keyup(appClass.calcNewTotCompra);
+                $("#btnExcEdit").click(appClass.confirmaExcRegistro);
+                $("#edtQtd2").keyup(appClass.calcNewTotCompra2);
+                $("#edtUnitC2").keyup(appClass.calcNewTotCompra2);
                 $("#edtUnitV2").keyup(appClass.calcEdtTotVenda);
 
             });
