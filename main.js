@@ -89,7 +89,8 @@ AppClass = function() {
 
         appClass.appData.records.push(registro);
 
-        alert(JSON.stringify(appClass.appData));
+        appPersistent.storeJSONData("appData", appClass.appData);
+        window.location.reload();
     }
 }
 
@@ -136,6 +137,6 @@ window.addEventListener("load", function(event) {
             });
         });
 
-    }, 2000);
+    }, 500);
 
 });
