@@ -1,7 +1,7 @@
 {
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "description": "Just a PWA starter page",
+    "description": "Preço Médio de Ações",
     "display": "standalone",
     "orientation": "portrait",
     "icons": [
@@ -67,8 +67,8 @@
             "type": "image/png"
         }
     ],
-    "name": "PWA Starter",
-    "short_name": "PWA Starter",
-    "start_url": "/pwa/index.html",
-    "scope": "/pwa/"
+    "name": "Preço Médio",
+    "short_name": "Preço Médio",
+    "start_url": "/willavg/index.html",
+    "scope": "/willavg/"
 }

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ffffff"/>
 
-    <title>PWA Starter</title>
-    <meta name="description" content="Just a PWA starter page 2.00"/>
+    <title>Preço Médio</title>
+    <meta name="description" content="Preço Médio de Ações"/>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
@@ -63,16 +63,17 @@
             <span class="input-group-addon"><i class="glyphicon glyphicon-ok-sign"></i></span>
             <input id="edtTotalC" type="number" class="form-control" disabled="true" placeholder="Total">
         </div>
-        <div class="input-group" style="padding-top:20px">
+        <div class="input-group" style="padding-top:20px;text-align:center">
             <button id="btnSalvaNew" class="btn btn-primary">Salvar</button>
-            <button id="btnCancNew" class="btn btn-primary">Cancelar</button>
+            &nbsp;
+            <button id="btnCancNew" class="btn btn-danger">Cancelar</button>
         </div>
     </div>
 
     <div id="mainScreen">
       <h3>{numero de lancamentos}</h3>
       <p>
-        <button id='btnNovo'> Novo </button>
+        <button class="btn btn-success" id='btnNovo'> Novo </button>
       </p>
       <p>
         <table width="100%">

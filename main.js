@@ -29,6 +29,10 @@ AppClass = function() {
         console.log('--> AppClass.helloWorld()');
     }
 
+    this.novoRegistro = function(coinID, coinQtd, coinUnitC) {
+        
+    }
+
     this.salvaNovoRegistro = function() {
         let coinID = $.trim($("#edtID").val());
         if (coinID=="") {
@@ -52,6 +56,9 @@ AppClass = function() {
         }
 
         let totalC = (coinQtd * coinUnitC);
+
+        let registro = appClass.novoRegistro(coinID, coinQtd, coinUnitC);
+        alert(JSON.stringify(registro));
     }
 }
 
